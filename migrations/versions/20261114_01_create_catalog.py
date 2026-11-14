@@ -26,7 +26,6 @@ def upgrade() -> None:
         sa.Column("featured", sa.Boolean(), nullable=False, server_default=sa.false()),
         sa.UniqueConstraint("slug", name="uq_courses_slug"),
     )
-    op.create_index("ix_courses_slug", "courses", ["slug"])
     op.create_index("ix_courses_title", "courses", ["title"])
     op.create_index("ix_courses_category", "courses", ["category"])
     op.create_table(
@@ -41,15 +40,12 @@ def upgrade() -> None:
         sa.Column("duration", sa.String(length=40), nullable=False),
         sa.UniqueConstraint("slug", name="uq_learning_paths_slug"),
     )
-    op.create_index("ix_learning_paths_slug", "learning_paths", ["slug"])
     op.create_index("ix_learning_paths_title", "learning_paths", ["title"])
 
 
 def downgrade() -> None:
     op.drop_index("ix_learning_paths_title", table_name="learning_paths")
-    op.drop_index("ix_learning_paths_slug", table_name="learning_paths")
     op.drop_table("learning_paths")
     op.drop_index("ix_courses_category", table_name="courses")
     op.drop_index("ix_courses_title", table_name="courses")
-    op.drop_index("ix_courses_slug", table_name="courses")
     op.drop_table("courses")

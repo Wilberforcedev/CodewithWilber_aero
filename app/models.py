@@ -8,7 +8,7 @@ class Course(Base):
     __tablename__ = "courses"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    slug: Mapped[str] = mapped_column(String(100), unique=True, index=True)
+    slug: Mapped[str] = mapped_column(String(100), unique=True)
     title: Mapped[str] = mapped_column(String(160), index=True)
     category: Mapped[str] = mapped_column(String(80), index=True)
     level: Mapped[str] = mapped_column(String(40))
@@ -25,7 +25,7 @@ class LearningPath(Base):
     __tablename__ = "learning_paths"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    slug: Mapped[str] = mapped_column(String(100), unique=True, index=True)
+    slug: Mapped[str] = mapped_column(String(100), unique=True)
     title: Mapped[str] = mapped_column(String(160), index=True)
     category: Mapped[str] = mapped_column(String(80))
     summary: Mapped[str] = mapped_column(String(240))
