@@ -1,10 +1,10 @@
 # Code with Wilber
 
-A course discovery and learning-path website built with Python, FastAPI, Jinja, and SQLAlchemy. The interface takes cues from modern creator-led course platforms: clear course outcomes, focused learning paths, student proof, and simple calls to action. All copy and visual identity here are original.
+A course discovery and learning-path website built with Python, FastAPI, Jinja, and SQLAlchemy. The interface takes cues from modern creator-led course platforms: clear course outcomes, focused learning paths, and simple calls to action. All copy and visual identity here are original.
 
 ## Features
 
-- Responsive home page with course discovery, learning paths, student stories, and an instructor introduction.
+- Responsive home page with course discovery, learning paths, and an instructor introduction.
 - Searchable course catalogue with category filters.
 - Course and learning-path detail pages.
 - SQLite for local development and PostgreSQL in the supplied Docker Compose setup.
@@ -24,7 +24,7 @@ alembic upgrade head
 uvicorn app.main:app --reload
 ```
 
-Open <http://localhost:8000>. The SQLite database and starter catalogue are created automatically on first startup.
+Open <http://localhost:8000>. The starter catalogue is seeded automatically after the database migration has run.
 
 ## Run with Docker
 
