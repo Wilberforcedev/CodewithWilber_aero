@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Courses — {{ settings.app_name }}{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><p class="eyebrow">Make your next move</p><h1>Find a course.<br><em>Build a skill.</em></h1><p class="hero-lede">Practical lessons, clear explanations, and projects that make the learning stick.</p></div></section>
+<section class="section catalog-section"><div class="container">
+  <form class="filters" action="/courses" method="get"><label class="search-field"><span class="sr-only">Search courses</span><input type="search" name="q" value="{{ q }}" placeholder="Search courses, skills, topics…"><button type="submit" aria-label="Search">⌕</button></label><label class="select-field"><span class="sr-only">Filter by category</span><select name="category"><option value="">All topics</option>{% for item in categories %}<option value="{{ item }}" {% if item == category %}selected{% endif %}>{{ item }}</option>{% endfor %}</select></label><button class="button button-dark filter-submit" type="submit">Apply filters</button><span class="result-count">{{ courses|length }} course{% if courses|length != 1 %}s{% endif %}</span></form>
+  {% if courses %}<div class="course-grid">{% for course in courses %}{% include "_course_card.html" %}{% endfor %}</div>{% else %}<div class="empty-state"><span>⌕</span><h2>No courses found</h2><p>Try another search or clear the topic filter.</p><a class="button button-dark" href="/courses">Show every course</a></div>{% endif %}
+</div></section>
+{% endblock %}

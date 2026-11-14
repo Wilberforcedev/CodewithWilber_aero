@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Learning paths — {{ settings.app_name }}{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><p class="eyebrow">A little direction goes a long way</p><h1>Make progress,<br><em>one step at a time.</em></h1><p class="hero-lede">Follow a considered sequence of courses, practice what you learn, and see how each skill connects.</p></div></section>
+<section class="section paths-section"><div class="container path-grid path-grid-large">{% for path in paths %}<a class="path-card" href="/learning-paths/{{ path.slug }}"><div class="path-number">0{{ loop.index }}</div><div class="path-card-copy"><span class="pill">{{ path.category }} · {{ path.duration }}</span><h2>{{ path.title }}</h2><p>{{ path.summary }}</p><span class="text-link">Explore the path <span aria-hidden="true">↗</span></span></div><span class="path-arrow" aria-hidden="true">↗</span></a>{% endfor %}</div></section>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}{{ path.title }} — {{ settings.app_name }}{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><a class="back-link" href="/learning-paths">← All learning paths</a><p class="eyebrow">{{ path.category }} · {{ path.duration }}</p><h1>{{ path.title }}</h1><p class="hero-lede">{{ path.description }}</p></div></section>
+<section class="section path-detail-section"><div class="container"><div class="section-heading"><div><p class="eyebrow">Your sequence</p><h2>{{ courses|length }} courses, one clear direction</h2></div></div><div class="path-steps">{% for course in courses %}<article class="path-step"><span class="step-number">{{ "%02d"|format(loop.index) }}</span><div><p class="eyebrow">{{ course.category }} · {{ course.duration }}</p><h3><a href="/courses/{{ course.slug }}">{{ course.title }}</a></h3><p>{{ course.summary }}</p></div><a class="step-arrow" href="/courses/{{ course.slug }}" aria-label="View {{ course.title }}">↗</a></article>{% endfor %}</div></div></section>
+{% endblock %}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6f2">
+  <meta name="description" content="Learn practical software skills with structured courses and projects from Code with Wilber.">
+  <title>{% block title %}{{ settings.app_name }} — Learn by building{% endblock %}</title>
+  <link rel="canonical" href="{{ settings.site_url.rstrip('/') }}{{ request.url.path }}">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/site.css">
+  <script src="/static/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="/" aria-label="Code with Wilber home">
+        <span class="brand-mark" aria-hidden="true">W</span>
+        <span>code with <strong>wilber</strong></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <a href="/courses" {% if request.url.path.startswith('/courses') %}aria-current="page"{% endif %}>Courses</a>
+        <a href="/learning-paths" {% if request.url.path.startswith('/learning-paths') %}aria-current="page"{% endif %}>Learning paths</a>
+        <a href="mailto:{{ settings.contact_email }}">Contact</a>
+        <a class="button button-dark button-small" href="/courses">Explore courses <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">{% block content %}{% endblock %}</main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand footer-brand" href="/">
+          <span class="brand-mark" aria-hidden="true">W</span>
+          <span>code with <strong>wilber</strong></span>
+        </a>
+        <p>Learn the skill. Build something real. Keep going.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/courses">Courses</a>
+        <a href="/learning-paths">Learning paths</a>
+        <a href="mailto:{{ settings.contact_email }}">{{ settings.contact_email }}</a>
+      </div>
+      <p class="copyright">© {{ settings.app_name }}. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

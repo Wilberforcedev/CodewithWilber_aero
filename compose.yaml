@@ -1,0 +1,37 @@
+services:
+  web:
+    build: .
+    command: ["sh", "-c", "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000 --proxy-headers"]
+    environment:
+      DATABASE_URL: postgresql+psycopg://wilber:${POSTGRES_PASSWORD:-change-me}@db:5432/wilber
+      SITE_URL: ${SITE_URL:-http://localhost:8000}
+      CONTACT_EMAIL: ${CONTACT_EMAIL:-hello@codewithwilber.com}
+      CHECKOUT_URL: ${CHECKOUT_URL:-}
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: wilber
+      POSTGRES_USER: wilber
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wilber -d wilber"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
